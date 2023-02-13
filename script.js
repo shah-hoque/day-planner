@@ -22,21 +22,24 @@ function timeChecker() {
     let blockTime = moment(BlocksAsTime[i], "h:mm a")
 
     if (currentDateTime.isAfter(blockTime)) {
-      console.log(allBlocksIds[i])
-
-
-      $(allBlocksIds[i]).css('background-color', 'blue')
+      $(allBlocksIds[i]).css('background-color', 'red')
     }
+    
+    if (currentDateTime.hour() === blockTime.hour()) {
+      $(allBlocksIds[i]).css('background-color', 'green')
+    } 
+    
+    
 
   }
 
 
 }
-// setInterval(timeChecker, 10000);
+setInterval(timeChecker, 1000);
 
 
 
-timeChecker()
+// timeChecker()
 
 
 
