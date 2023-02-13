@@ -1,5 +1,17 @@
+// Get todays day and parse into id
+$(document).ready(function () {
+  const todaysDay = moment().format("dddd");
+  $("#day-today").text(todaysDay);
+});
 
-function checkTime() {
+
+console.log(todaysDay)
+
+
+
+
+
+function timeChecker() {
   const currentDateTime = moment();
   const futureDateTime = moment("4:01pm", "h:mmA");
 
@@ -12,4 +24,5 @@ function checkTime() {
   }
 }
 
-setInterval(checkTime, 1000);
+setInterval(timeChecker, 1000);
+
