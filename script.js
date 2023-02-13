@@ -5,7 +5,6 @@ $(document).ready(function () {
 });
 
 
-console.log(todaysDay)
 
 
 
