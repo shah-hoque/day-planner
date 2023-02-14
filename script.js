@@ -1,17 +1,22 @@
-// Runs code after DOM elements are loaded
+// RUNS CODE AFTER DOM ELEMENTS ARE LOADED
 $(document).ready(function () {
 
 $("#saveChangeBtn").hide();
 
+// DISPLAY TODAYS DAY
+const todaysDay = moment().format("dddd");
+$("#day-today").text(todaysDay);
+
+
 // EVENT LISTENERS -----------------------------------
 
-// checks if any text input field has changed
+// EVENT L THAT CHECKS IF ANY INPUT TEXT HAS CHANGED
 $("input").on("input", function () {
   $("#saveChangeBtn").show();
 });
 
 
-// save user inputs / changes to local storage
+// EVENT L THAT SAVES USER INPUT/CHANGES TO LOCAL STORAGE
 $("#saveChangeBtn").on("click", function () {
   $("input").each(function () {
     // save key as (this) id & value pair as (this) val
@@ -23,36 +28,30 @@ $("#saveChangeBtn").on("click", function () {
 // EVENT LISTENERS (end) -----------------------------------
 
 
-// FUNC) RETURN LOCAL STORAGE TO TEXTAREA
+// FUNC) RETURN LOCAL STORAGE TO TEXT FIELDS
 $("input").each(function () {
-  // get the val from local storage associated with the text input id
+  // gets the val from local storage associated with the text input id
   var localValue = localStorage.getItem($(this).attr("id"));
-  // if local storage val exists then set the val of (this) textarea to localValue
+  // if local storage val exists then set the val of (this) text field to localValue
   if (localValue) {
     $(this).val(localValue);
   }
 });
 
 
-// get todays day and parse into id
-const todaysDay = moment().format("dddd");
-$("#day-today").text(todaysDay);
+// FUNC) CLEAR LOCAL STORAGE
+$("#clearPlannerBtn").on("click", function () {
+  localStorage.clear();
+  $("input").val(""); // clear all inputs text field
+});
 
 
-// array of times to check against
-const BlocksAsTime = ["9:00am","10:00am","11:00am","12:00pm","1:00pm","2:00pm","3:00pm","4:00pm","5:00pm"]
-
-
-// array of all 9 input textarea to apply style to
-const allBlocksIds = ["#num9","#num10","#num11","#num12","#num1","#num2","#num3","#num4","#num5"]
-
-
-// colour textarea if an hr has passed or it's the current hr
+// FUNC) COLOUR TEXT FIELDS IF X HR HAS PASSED OR IT'S THE CURRENT HR
 function timeChecker() {
   const currentDateTime = moment(); // gets current day/time
 
   for(let i = 0; i < BlocksAsTime.length; i++) {
-    let blockTime = moment(BlocksAsTime[i], "h:mm a") // gets a time as a moment object
+    let blockTime = moment(BlocksAsTime[i], "h:mm a") // gets x time as a moment object
 
     if (currentDateTime.isAfter(blockTime)) {
       $(allBlocksIds[i]).css('background-color', 'red')
@@ -66,6 +65,11 @@ function timeChecker() {
 setInterval(timeChecker, 1000); // runs the timeChecker func every second
 
 
+// ARRAY OF TIMES TO CHECK AGAINST
+const BlocksAsTime = ["9:00am","10:00am","11:00am","12:00pm","1:00pm","2:00pm","3:00pm","4:00pm","5:00pm"]
 
+
+// ARRAY OF ALL 9 INPUT TEXT FIELD TO APPLY STYLES TO
+const allBlocksIds = ["#num9","#num10","#num11","#num12","#num1","#num2","#num3","#num4","#num5"]
 
 });
