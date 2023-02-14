@@ -43,11 +43,23 @@ $("input[type='text']").each(function () {
 $("#clearPlannerBtn").on("click", function () {
   localStorage.clear();
   $("input").val(""); // clear all inputs text field
+  $('input[type="checkbox"]').prop('checked', false); // uncheck all checkboxes
 });
 
-// FUNC) COLOUR TEXT FIELD IF CHECKBOX CHECKED
 
+// FUNC) STRIKETHROUGH TEXT FIELD IF CHECKBOX IS CHECKED
+$("input[type='checkbox']").on("click", function () {
+  var isChecked = $(this).prop("checked"); // props checks if (this) is checked
 
+  // closest goes up the dom looking for the first instance of ".input-group", then find looks for "input[type='text']" within ".input-group" 
+  var textFieldViaAncestor = $(this).closest(".input-group").find("input[type='text']");
+
+  if (isChecked && textFieldViaAncestor.val()) {
+    textFieldViaAncestor.css("text-decoration", "line-through");
+  } else {
+    textFieldViaAncestor.css("text-decoration", "none");
+  }
+});
 
 
 // FUNC) COLOUR TEXT FIELDS IF X HR HAS PASSED OR IT'S THE CURRENT HR
