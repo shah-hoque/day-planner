@@ -11,7 +11,7 @@ $("#day-today").text(todaysDay);
 // EVENT LISTENERS -----------------------------------
 
 // EVENT L THAT CHECKS IF ANY INPUT TEXT HAS CHANGED
-$("input").on("input", function () {
+$("input[type='text']").on("input", function () {
   $("#saveChangeBtn").show();
 });
 
@@ -29,7 +29,7 @@ $("#saveChangeBtn").on("click", function () {
 
 
 // FUNC) RETURN LOCAL STORAGE TO TEXT FIELDS
-$("input").each(function () {
+$("input[type='text']").each(function () {
   // gets the val from local storage associated with the text input id
   var localValue = localStorage.getItem($(this).attr("id"));
   // if local storage val exists then set the val of (this) text field to localValue
@@ -44,6 +44,10 @@ $("#clearPlannerBtn").on("click", function () {
   localStorage.clear();
   $("input").val(""); // clear all inputs text field
 });
+
+// FUNC) COLOUR TEXT FIELD IF CHECKBOX CHECKED
+
+
 
 
 // FUNC) COLOUR TEXT FIELDS IF X HR HAS PASSED OR IT'S THE CURRENT HR
