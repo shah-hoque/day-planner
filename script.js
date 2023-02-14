@@ -10,6 +10,7 @@ $("input").on("input", function () {
   $("#saveChangeBtn").show();
 });
 
+
 // save user inputs / changes to local storage
 $("#saveChangeBtn").on("click", function () {
   $("input").each(function () {
@@ -19,9 +20,18 @@ $("#saveChangeBtn").on("click", function () {
   $("#saveChangeBtn").hide();
 });
 
-
 // EVENT LISTENERS (end) -----------------------------------
 
+
+// FUNC) RETURN LOCAL STORAGE TO TEXTAREA
+$("input").each(function () {
+  // get the val from local storage associated with the text input id
+  var localValue = localStorage.getItem($(this).attr("id"));
+  // if local storage val exists then set the val of (this) textarea to localValue
+  if (localValue) {
+    $(this).val(localValue);
+  }
+});
 
 
 // get todays day and parse into id
