@@ -25,21 +25,8 @@ $("#saveChangeBtn").on("click", function () {
   $("#saveChangeBtn").hide();
 });
 
-// EVENT LISTENERS (end) -----------------------------------
 
-
-// FUNC) RETURN LOCAL STORAGE TO TEXT FIELDS
-$("input[type='text']").each(function () {
-  // gets the val from local storage associated with the text input id
-  var localValue = localStorage.getItem($(this).attr("id"));
-  // if local storage val exists then set the val of (this) text field to localValue
-  if (localValue) {
-    $(this).val(localValue);
-  }
-});
-
-
-// FUNC) CLEAR LOCAL STORAGE
+// EVENT L THAT CLEARS LOCAL STORAGE
 $("#clearPlannerBtn").on("click", function () {
   localStorage.clear();
   $("input").val(""); // clear all inputs text field
@@ -47,7 +34,7 @@ $("#clearPlannerBtn").on("click", function () {
 });
 
 
-// FUNC) STRIKETHROUGH TEXT FIELD IF CHECKBOX IS CHECKED
+// EVENT L THAT APPLIES STRIKETHROUGH TO TEXT FIELD IF CHECKBOX IS CHECKED
 $("input[type='checkbox']").on("click", function () {
   var isChecked = $(this).prop("checked"); // props checks if (this) is checked
 
@@ -58,6 +45,19 @@ $("input[type='checkbox']").on("click", function () {
     textFieldViaAncestor.css("text-decoration", "line-through");
   } else {
     textFieldViaAncestor.css("text-decoration", "none");
+  }
+});
+
+// EVENT LISTENERS (end) -----------------------------------
+
+
+// FUNC) RETURN LOCAL STORAGE TO TEXT FIELDS
+$("input[type='text']").each(function () {
+  // gets the val from local storage associated with the text input id
+  var localValue = localStorage.getItem($(this).attr("id"));
+  // if local storage val exists then set the val of (this) text field to localValue
+  if (localValue) {
+    $(this).val(localValue);
   }
 });
 
