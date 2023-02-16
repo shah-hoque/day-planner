@@ -110,7 +110,7 @@ function timeChecker() {
     }
     
     if (currentDateTime.hour() === blockTime.hour()) {
-      $(allBlocksIds[i]).css('background-color', '#d4ffd4')
+      $(allBlocksIds[i]).css('background-color', '#c0ffc0')
     } 
   }
 }
@@ -119,7 +119,6 @@ setInterval(timeChecker, 1000); // runs the timeChecker func every second
 
 // ARRAY OF TIMES TO CHECK AGAINST
 const BlocksAsTime = ["9:00am","10:00am","11:00am","12:00pm","1:00pm","2:00pm","3:00pm","4:00pm","5:00pm"]
-
 
 // ARRAY OF ALL 9 INPUT TEXT FIELD TO APPLY STYLES TO
 const allBlocksIds = ["#num9","#num10","#num11","#num12","#num1","#num2","#num3","#num4","#num5"]
