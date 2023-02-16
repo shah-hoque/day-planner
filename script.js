@@ -70,11 +70,11 @@ function timeChecker() {
     let blockTime = moment(BlocksAsTime[i], "h:mm a") // gets x time as a moment object
 
     if (currentDateTime.isAfter(blockTime)) {
-      $(allBlocksIds[i]).css('background-color', 'red')
+      $(allBlocksIds[i]).css('background-color', '#f9e0db')
     }
     
     if (currentDateTime.hour() === blockTime.hour()) {
-      $(allBlocksIds[i]).css('background-color', 'green')
+      $(allBlocksIds[i]).css('background-color', '#d4ffd4')
     } 
   }
 }

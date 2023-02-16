@@ -5,11 +5,20 @@ body {
 }
 
 
+.container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
 
-/* #num9 {
-  background-color: black;
+#time-block {
+  min-width: 68px;
+  max-width: 68px;
+  display: block;
+}
 
-} */
 
 
 
