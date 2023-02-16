@@ -37,8 +37,8 @@ body {
 }
 
 #saveChangeBtn, #clearPlannerBtn {
-  background-color: #e6eaed;
-  border-color: #e6eaed;
+  background-color: #7cb9e86d;
+  border-color: #7cb9e86d;
   color: black;
   font-weight: 500;
   font-size: small;
@@ -52,6 +52,15 @@ body {
 }
 
 /* BUTTONS (end) ---------------- */
+
+/* CHECKBOX ---------------- */
+.form-check-input:checked {
+  background-color:#7CB9E8;
+  border-color: #7CB9E8;
+}
+
+/* CHECKBOX (end) ---------------- */
+
 
 
 
