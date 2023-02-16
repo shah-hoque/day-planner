@@ -21,8 +21,30 @@ $("#saveChangeBtn").on("click", function () {
   $("input").each(function () {
     // save key as (this) id & value pair as (this) val
     localStorage.setItem($(this).attr("id"), $(this).val());
+
+    // save checkbox status to localStorage
+    var isChecked = $(this).closest(".input-group").find("input[type='checkbox']").prop("checked");
+    localStorage.setItem($(this).attr("id") + "-checked", isChecked);
   });
   $("#saveChangeBtn").hide();
+});
+
+
+// EVENT L THAT RECORDS CHECKBOX STATUS
+$("input[type='checkbox']").on("click", function () {
+  
+  // get boolean value of checked status
+  var isChecked = $(this).prop("checked");
+  
+  // closest goes up the dom looking for the first instance of ".input-group", then find looks for "input[type='text']" within ".input-group"
+  var textFieldViaAncestor = $(this).closest(".input-group").find("input[type='text']");
+  
+  // pass checked status into func that changes style
+  updateTextFieldStyle(textFieldViaAncestor, isChecked);
+  
+  // save checkbox status to localStorage
+  var id = textFieldViaAncestor.attr("id");
+  localStorage.setItem(id + "-checked", isChecked);
 });
 
 
@@ -33,32 +55,46 @@ $("#clearPlannerBtn").on("click", function () {
   $('input[type="checkbox"]').prop('checked', false); // uncheck all checkboxes
 });
 
+// EVENT LISTENERS (end) -----------------------------------
 
-// EVENT L THAT APPLIES STRIKETHROUGH TO TEXT FIELD IF CHECKBOX IS CHECKED
-$("input[type='checkbox']").on("click", function () {
-  var isChecked = $(this).prop("checked"); // props checks if (this) is checked
 
-  // closest goes up the dom looking for the first instance of ".input-group", then find looks for "input[type='text']" within ".input-group" 
+// FUNC) THAT APPLIES THE STRIKETHROUGH
+function updateTextFieldStyle(textField, isChecked) {
+  if (isChecked) {
+    textField.css("text-decoration", "line-through");
+  } else {
+    textField.css("text-decoration", "none");
+  }
+}
+
+
+// FUNC) LOOP CHECKBOXES TO UPDATE CHECKED STATUS BASED ON LOCAL STORAGE VALUE
+$("input[type='checkbox']").each(function () {
+
+  // get id text input element associated with the current checkbox
+  var idFromTextFieldViaAncestor = $(this).closest(".input-group").find("input[type='text']").attr("id");
+
+  // get the checked status for this id from localStorage
+  var isChecked = localStorage.getItem(idFromTextFieldViaAncestor + "-checked");
+
+  // Set the checked status of this checkbox to the retrieved value
+  $(this).prop("checked", isChecked === "true");
+
+  // get the text input element associated with the current checkbox using the closest ancestor with class .input-group
   var textFieldViaAncestor = $(this).closest(".input-group").find("input[type='text']");
 
-  if (isChecked && textFieldViaAncestor.val()) {
-    textFieldViaAncestor.css("text-decoration", "line-through");
-  } else {
-    textFieldViaAncestor.css("text-decoration", "none");
-  }
+  // update the style of the text input element based on the retrieved checked status
+  updateTextFieldStyle(textFieldViaAncestor, isChecked === "true");
 });
-
-// EVENT LISTENERS (end) -----------------------------------
 
 
 // FUNC) RETURN LOCAL STORAGE TO TEXT FIELDS
 $("input[type='text']").each(function () {
-  // gets the val from local storage associated with the text input id
-  var localValue = localStorage.getItem($(this).attr("id"));
-  // if local storage val exists then set the val of (this) text field to localValue
-  if (localValue) {
-    $(this).val(localValue);
-  }
+  // get localStorage val using the id of the current input element as the key
+  var savedValue = localStorage.getItem($(this).attr("id"));
+
+  // display savedValue
+  $(this).val(savedValue); // display savedValue
 });
 
 
