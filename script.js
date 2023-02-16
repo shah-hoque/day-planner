@@ -5,7 +5,7 @@ $("#saveChangeBtn").hide();
 
 // DISPLAY TODAYS DAY
 const todaysDay = moment().format("dddd");
-$("#day-today").text(todaysDay);
+$("#day-today").text("Today is " + todaysDay);
 
 
 // EVENT LISTENERS -----------------------------------

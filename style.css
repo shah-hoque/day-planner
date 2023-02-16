@@ -4,12 +4,11 @@ body {
   line-height: 1;
 }
 
-
+/* MAIN DIV ----------------------------------- */
 .container {
   position: fixed;
   top: 50%;
   left: 50%;
-  /* bring your own prefixes */
   transform: translate(-50%, -50%);
 }
 
@@ -18,11 +17,42 @@ body {
   max-width: 68px;
   display: block;
 }
+/* MAIN DIV (end) ----------------------------------- */
+
+
+/* BUTTONS ----------------------------------- */
+.two-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1.5%;
+}
+
+#clearPlannerBtn {
+  margin-left: auto;
+}
+
+#saveChangeBtn, #clearPlannerBtn {
+  background-color: #e6eaed;
+  border-color: #e6eaed;
+  color: black;
+  font-weight: 500;
+  font-size: small;
+
+  cursor: pointer;
+  display: inline-block;
+  border: 1px solid transparent;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  padding: 0.375rem 0.75rem;
+}
 
 
 
 
 
+
+
+/* BUTTONS (end) ----------------------------------- */
 
 
 
